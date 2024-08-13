@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Courier Service App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+      integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .hero {
+        background-image: url("{% static 'images/background.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 200px 0;
+      }
+
+      .features-icon {
+        font-size: 3em;
+      }
+      @media (max-width: 768px) {
+        .hero {
+          padding: 100px 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- prettier-ignore  -->
+    {% include 'navbar.html' %}
+    {% block content %} {% endblock %}
+    {% include 'footer.html' %}
+  </body>
+</html>

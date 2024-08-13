@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+      integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card mt-5">
+            <div class="card-header text-center">
+              <h3>Login</h3>
+            </div>
+            <div class="card-body">
+              <form id="loginForm" action="" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control{% if messages %} is-invalid{% endif %}"
+                    id="email"
+                    placeholder="Enter email"
+                  />
+                  {% for message in messages %}
+                  <div class="invalid-feedback">{{ message }}</div>
+                  {% endfor %}
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control{% if messages %} is-invalid{% endif %}"
+                    id="password"
+                    placeholder="Password"
+                  />
+                  {% for message in messages %}
+                  <div class="invalid-feedback">{{ message }}</div>
+                  {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block w-100">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="text-center my-4">
+        Don't have an account? <a href="{% url 'register' %}">Register Here</a>
+      </p>
+    </div>
+  </body>
+</html>

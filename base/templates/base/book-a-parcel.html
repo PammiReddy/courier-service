@@ -1,0 +1,103 @@
+<!-- prettier-ignore -->
+{% extends 'main.html' %} 
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center">Book a Parcel for Delivery</h2>
+    <form
+      style="max-width: 600px"
+      class="mx-auto"
+      id="parcelForm"
+      onsubmit="return validateForm()"
+      action=""
+      method="POST"
+    >
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="pickupLocation" class="form-label">Pickup Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="pickupLocation"
+          name="pickup_location"
+          placeholder="Enter pickup location"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="deliveryLocation" class="form-label">Delivery Location</label>
+        <input
+          type="text"
+          class="form-control"
+          id="deliveryLocation"
+          name="delivery_location"
+          placeholder="Enter delivery location"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="parcelWeight" class="form-label">Parcel Weight</label>
+        <input
+          type="text"
+          class="form-control"
+          id="parcelWeight"
+          name="parcel_weight"
+          placeholder="Enter parcel weight"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="parcelSize" class="form-label">Parcel Size</label>
+        <input
+          type="text"
+          class="form-control"
+          id="parcelSize"
+          name="parcel_size"
+          placeholder="Enter parcel size (e.g., LxWxH)"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="parcelContents" class="form-label">Parcel Contents</label>
+        <textarea
+          class="form-control"
+          id="parcelContents"
+          name="parcel_contents"
+          rows="3"
+          placeholder="Enter contents of the parcel"
+          required
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Schedule Delivery</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  function validateForm() {
+    let pickupLocation = document.getElementById("pickupLocation").value;
+    let deliveryLocation = document.getElementById("deliveryLocation").value;
+    let parcelWeight = document.getElementById("parcelWeight").value;
+    let parcelSize = document.getElementById("parcelSize").value;
+    let parcelContents = document.getElementById("parcelContents").value;
+
+    if (!pickupLocation || !deliveryLocation || !parcelWeight || !parcelSize || !parcelContents) {
+      alert("Please fill out all fields.");
+      return false;
+    }
+
+    if (isNaN(parcelWeight) || parcelWeight <= 0) {
+      alert("Please enter a valid parcel weight.");
+      return false;
+    }
+
+    const sizePattern = /^\d+x\d+x\d+$/;
+    if (!sizePattern.test(parcelSize)) {
+      alert("Please enter a valid parcel size in the format LxWxH.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!-- prettier-ignore  -->
+{% extends 'main.html' %}
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">{{request.user}}'s Parcel Booking List</h2>
+    <ul id="parcelList" class="list-group">
+      {% for booking in my_bookings %}
+      <li class="list-group-item">
+        <strong>Pickup Location:</strong> {{booking.pickup_location}}<br />
+        <strong>Delivery Location:</strong> {{booking.delivery_location}}<br />
+        <strong>Weight:</strong> {{booking.parcel_weight}} KG<br />
+        <strong>Size:</strong> {{booking.parcel_size}}<br />
+        <strong>Contents:</strong> {{booking.parcel_contents}}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% endblock %}
